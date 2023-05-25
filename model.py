@@ -36,8 +36,13 @@ xtrain,xtest,ytrain,ytest=train_test_split(X,Y)
 rmodel=RandomForestClassifier()
 rmodel.fit(xtrain,ytrain)
 
+
 print("Train accuracy: ", rmodel.score(xtrain,ytrain))
 print("Test accuracy: ", rmodel.score(xtest,ytest))
+
+
+ypred = rmodel.predict(xtest)
+print(accuracy_score(ypred,ytest))
 
 def test(img) :
     resize_img = cv2.resize(img,(100,100))

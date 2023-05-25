@@ -1,9 +1,7 @@
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
-from model_train import test
-
-from model_train import rmodel
+from model import test
 
 #### TESTING ####
 img_path=r"images/Parasitized_(900).png"
