@@ -1,0 +1,10 @@
+# Model evaluation
+train_accuracy = rf.score(x_train, y_train)
+test_accuracy = rf.score(x_test, y_test)
+print("Train accuracy:", train_accuracy)
+print("Test accuracy:", test_accuracy)
+
+# Predict on test set
+y_pred = rf.predict(x_test)
+test_accuracy = accuracy_score(y_pred, y_test)
+print("Test accuracy (using accuracy_score):", test_accuracy)

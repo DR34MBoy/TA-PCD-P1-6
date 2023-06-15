@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, ConfusionMatrixDisplay
 
 ### TRAINING ###
-directory_path=r'images'
+directory_path=r'images_new'
 
 # print(os.listdir(directory_path))
 # print(os.path)
@@ -30,9 +30,9 @@ print(np.array(features).shape)
 
 X=np.array(features)
 Y=np.array(label)
-X=X.reshape(2000,30000)   
+X=X.reshape(len(features), -1)   
 
-xtrain,xtest,ytrain,ytest=train_test_split(X,Y)
+xtrain,xtest,ytrain,ytest=train_test_split(X, Y)
 
 rmodel=RandomForestClassifier()
 rmodel.fit(xtrain,ytrain)
