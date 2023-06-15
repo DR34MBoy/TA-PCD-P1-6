@@ -19,9 +19,10 @@ for i in os.listdir(directory_path):
     elif i.split('_')[0]=='Uninfected':     
         label.append("Uninfected")
 
+
 features=[]     
 for i in os.listdir(directory_path):
-    f=cv2.imread(os.path.join(directory_path,i))  
+    f=cv2.imread(os.path.join(directory_path,i), cv2.COLOR_RGB2GRAY)  
     resized_f=cv2.resize(f,(100,100))
     features.append(resized_f)
 
