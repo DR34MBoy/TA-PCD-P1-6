@@ -47,7 +47,7 @@ Y = np.array(label)
 X = X.reshape(len(features), -1)
 
 # Split Dataset
-x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, random_state=42)
+x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.1, random_state=42)
 
 # Ubah dimensi data menjadi 1D (flatten)
 x_train = x_train.reshape(x_train.shape[0], -1)
@@ -110,18 +110,34 @@ x_test = x_test / 255.0
 # print(sklearn.metrics.classification_report(y_true= y_test, y_pred= y_pred_test))
 
 ## Versi 2 ##
+# rf = RandomForestClassifier(n_estimators=100, criterion='gini' ,max_depth=30,  min_samples_leaf=2, max_features=30)
+# feature_selector = SelectFromModel(rf)
+# feature_selector.fit(x_train, y_train)
+
+# x_train_selected = feature_selector.transform(x_train)
+# X_test_selected = feature_selector.transform(x_test)
+
+# rf.fit(x_train_selected, y_train)
+
+# y_pred_train = rf.predict(x_train_selected)
+#     # predictions for test
+# y_pred_test = rf.predict(X_test_selected)
+#     # training metrics
+# print("Training metrics:")
+# print(sklearn.metrics.classification_report(y_true= y_train, y_pred= y_pred_train))
+    
+#     # test data metrics
+# print("Test data metrics:")
+# print(sklearn.metrics.classification_report(y_true= y_test, y_pred= y_pred_test))
+
+## Versi 3 ##
 rf = RandomForestClassifier(n_estimators=100, criterion='gini' ,max_depth=30,  min_samples_leaf=2, max_features=30)
-feature_selector = SelectFromModel(rf)
-feature_selector.fit(x_train, y_train)
 
-x_train_selected = feature_selector.transform(x_train)
-X_test_selected = feature_selector.transform(x_test)
+rf.fit(x_train, y_train)
 
-rf.fit(x_train_selected, y_train)
-
-y_pred_train = rf.predict(x_train_selected)
+y_pred_train = rf.predict(x_train)
     # predictions for test
-y_pred_test = rf.predict(X_test_selected)
+y_pred_test = rf.predict(x_test)
     # training metrics
 print("Training metrics:")
 print(sklearn.metrics.classification_report(y_true= y_train, y_pred= y_pred_train))

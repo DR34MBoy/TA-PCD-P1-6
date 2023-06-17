@@ -4,7 +4,7 @@ import numpy as np
 from model import test
 
 #### TESTING ####
-img_path=r"images_test_run/Parasitized_(2027).png"
+img_path=r"images_test_run/Uninfected_(7927).png"
 img=cv2.imread(img_path)  
 
 plt.imshow(img)  
