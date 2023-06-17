@@ -1,7 +1,7 @@
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
-from model_2 import test
+from model import test
 
 #### TESTING ####
 img_path=r"images_test_run/Parasitized_(2027).png"
