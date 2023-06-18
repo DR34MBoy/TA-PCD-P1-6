@@ -1,10 +1,7 @@
 import cv2
 import matplotlib.pyplot as plt
-import numpy as np
 from model import test
 import os
-
-#### TESTING ####
 
 img_path="images_test_run"
 
