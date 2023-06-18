@@ -60,19 +60,19 @@ x_test = x_test / 255.0
 
 ### Random Forest Classifier tanpa tuning ###
 
-# rf = RandomForestClassifier() 
-# rf.fit(x_train, y_train)
+rf = RandomForestClassifier() 
+rf.fit(x_train, y_train)
 
-# y_pred_train = rf.predict(x_train)
-#     # predictions for test
-# y_pred_test = rf.predict(x_test)
-#     # training metrics
-# print("Training metrics:")
-# print(sklearn.metrics.classification_report(y_true= y_train, y_pred= y_pred_train))
+y_pred_train = rf.predict(x_train)
+    # predictions for test
+y_pred_test = rf.predict(x_test)
+    # training metrics
+print("Training metrics:")
+print(sklearn.metrics.classification_report(y_true= y_train, y_pred= y_pred_train))
     
-#     # test data metrics
-# print("Test data metrics:")
-# print(sklearn.metrics.classification_report(y_true= y_test, y_pred= y_pred_test))
+    # test data metrics
+print("Test data metrics:")
+print(sklearn.metrics.classification_report(y_true= y_test, y_pred= y_pred_test))
 
 
 ### Random Forest Classifier dengan tuning ###
@@ -131,9 +131,37 @@ x_test = x_test / 255.0
 # print(sklearn.metrics.classification_report(y_true= y_test, y_pred= y_pred_test))
 
 ## Versi 3 ##
-rf = RandomForestClassifier(n_estimators=100, criterion='gini' ,max_depth=30,  min_samples_leaf=2, max_features=30)
+# rf = RandomForestClassifier(n_estimators=100, criterion='gini' ,max_depth=30,  min_samples_leaf=2, max_features=30)
+
+# rf.fit(x_train, y_train)
+
+# y_pred_train = rf.predict(x_train)
+#     # predictions for test
+# y_pred_test = rf.predict(x_test)
+#     # training metrics
+# print("Training metrics:")
+# print(sklearn.metrics.classification_report(y_true= y_train, y_pred= y_pred_train))
+    
+#     # test data metrics
+# print("Test data metrics:")
+# print(sklearn.metrics.classification_report(y_true= y_test, y_pred= y_pred_test))
+
+## Versi 1 ##
+parameters = {  'n_estimators':[50,60,70,80,90,100],
+                'min_samples_leaf':[1,2,3,4],
+                'max_depth':[10,20,30],
+                'max_features':[10,20,30,40,50],
+                'criterion':['gini','entropy']
+            }
+
+rf = RandomForestClassifier()
+rf = GridSearchCV(rf, param_grid=parameters, scoring='accuracy')
+
 
 rf.fit(x_train, y_train)
+
+best_params = rf.best_params_
+print("Best Parameters:", best_params)
 
 y_pred_train = rf.predict(x_train)
     # predictions for test
