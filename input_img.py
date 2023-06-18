@@ -2,21 +2,17 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 from model import test
+import os
 
 #### TESTING ####
-img_path=r"images_test_run/Uninfected_(7927).png"
-img=cv2.imread(img_path)  
 
-plt.imshow(img)  
-plt.show() 
+img_path="images_test_run"
 
-test(img)
-
-# resize_img = cv2.resize(img,(100,100))
-# array_image=np.array(resize_img)
-# array_image=array_image.reshape(1,30000)
-
-# print(rmodel.predict(array_image).reshape(1,-1))
-
-# plt.imshow(array_image.reshape(100,100,3)) 
-# plt.show()
+test_img_dir = os.path.join(img_path)
+for image_file in os.listdir(test_img_dir):
+    if image_file.endswith('.png'):
+        image = cv2.imread(os.path.join(test_img_dir, image_file))
+        plt.imshow(image)  
+        plt.show() 
+        print(image_file)
+        test(image)
